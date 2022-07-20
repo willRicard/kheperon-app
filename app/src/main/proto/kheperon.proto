@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "eu.willricard.kheperon";
+
+service Kheperon {
+  rpc EnumSections (EnumRequest) returns (SectionConfigs) {}
+}
+
+message EnumRequest {
+  string secret = 1;
+}
+
+message SectionConfigs {
+  repeated SectionConfig configs = 1;
+}
+
+message SectionConfig {
+  string name = 1;
+  int32 module_bus = 2;
+  int32 module_bus_addr = 3;
+  repeated DeviceConfig devices = 4;
+}
+
+
+message DeviceConfig {
+  string name = 1;
+  repeated DeviceClass classes = 2;
+}
+
+message DeviceClass {
+  int32 address = 1;
+  string device_name = 2;
+}
